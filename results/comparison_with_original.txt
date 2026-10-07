@@ -1,0 +1,31 @@
+1. Pension paths and funds, original against this package, same seed
+   largest difference in a path: 0.0e+00
+   largest difference in a final fund: 5.6e-09
+
+2. Knock-in against knock-out, original code (barrier 120, same seed)
+   original: up-and-out 0.8043, up-and-in 0.8043
+   this package: up-and-out 0.7945, up-and-in 10.2666
+
+3. Reported error and coverage, original default settings (200 runs of 20,000 paths x 252 steps)
+   SD of the price across runs 0.0732, mean reported standard error 0.0526 (ratio 0.72), 95% interval covers the exact price 83.0% of the time
+
+4. Greeks, original code, 100,000 paths, five seeds (exact: delta 0.5096, gamma 0.01562, vega 39.06 per 1.00, 0.3906 per 0.01)
+   seed 0: delta 0.5010, gamma 0.61446, vega 35.08
+   seed 1: delta 0.3517, gamma -0.47756, vega 53.42
+   seed 2: delta 0.4338, gamma -0.75424, vega 56.13
+   seed 3: delta 0.3660, gamma 0.13906, vega 12.99
+   seed 4: delta 0.4572, gamma 0.07997, vega 25.21
+   this package (common random numbers):
+   seed 0: delta 0.5100, gamma 0.01580, vega 39.16
+   seed 1: delta 0.5094, gamma 0.01553, vega 39.03
+   seed 2: delta 0.5090, gamma 0.01575, vega 39.05
+   seed 3: delta 0.5101, gamma 0.01564, vega 39.18
+   seed 4: delta 0.5073, gamma 0.01576, vega 38.65
+
+5. Implied volatility of a price below the lowest the model can give (call, S=150, K=100, price 1.00)
+   original returns 0.0010
+   this package raises: Price 1.0000 is outside the range 54.8771 to 148.5215 that volatilities between 0.01% and 500% can give.
+
+6. Probability curve over 200 payments, 2,000 paths, 40 years
+Computed for mu = 0.05 in 0.06274104118347168 seconds
+   original 0.06 s, this package 0.0004 s (176 times faster)
